@@ -1,26 +1,20 @@
-import random
-import sys
-sys.path.insert(0, '../datagen')
-
-from address import *
-from person import *
-import string
-
 """ About You Page Subscript
 Contains:
 State, FirstName, MiddleName, LastName, Address,
 Apartment, DateOfBirth, Email, Phone """
+import random
+import string
 
-#Missing: FirstName, LastName, Apartment, Email
+from datagen import address as a
+from datagen import person as p
+
 def makeList():
-	state = randstate()
-	FirstName = "CCSUFN" + state
-	LastName = "CCSULN" + state
-	Apartment = random.randint(1, 9999)
-	Email = "plautomation@thehartford.com"
-	aboutYouList = [state, FirstName, randMI(), LastName, randaddress(), Apartment, randDOB(), Email, randphonenum()]
-	return aboutYouList
-
-List = makeList();
-for x in range (len(List)):
-		print (List[x],)
+	"""
+	TODO add docstring
+	"""
+	state = a.randstate()
+	firstname = state + "CCSUFN"
+	lastname = state + "CCSULN"
+	apartment = random.randint(0, 9999)
+	email = "plautomation@thehartford.com"
+	return [state, firstname, p.randMI(), lastname, a.randaddress(), apartment, p.randDOB(), email, p.randphonenum()]
