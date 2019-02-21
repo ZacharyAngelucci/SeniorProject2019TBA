@@ -2,10 +2,20 @@ import random
 import string
 
 def randaddress():
-    st = randstate();
-    street = randstreet();
-    zp = randzip();
-    print (street + ", " + st + ", " + zp);
+    """Returns a random address in the following format
+    [Street, city/town, 2 letter state, Zip code]
+    """
+    #TODO
+    # Might be hard to generate each component individually is there a way to
+    # pull a random address from somewhere?
+    # https://openaddresses.io/
+    # https://pe.usps.com/text/pub28/welcome.htm
+    state = randstate()
+    #TODO - Create a way to get a random city
+    city = "ToDo"
+    street = randstreet()
+    zip = "{0:05d}".format(randzip())
+    return [street, city, state, zip]
 
 def randstate():
     """Returns a random state in abbreviated form"""
@@ -16,14 +26,22 @@ def randstate():
                 "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     return random.choice(states)
 
-def randstreet(size=8, chars=string.ascii_lowercase):
-    """Returns a random street name and number ("hviwen")"""
+def randstreet():
+    """Returns a random street name and number"""
+    size = 8
+    chars = string.ascii_lowercase
     return ''.join(random.choice(chars) for _ in range(size))
+    #TODO
+    # How should we generate street names?
 
-def randzip(size=5, chars=string.digits):
-    """Returns a random zipcode ("85734")"""
-    return ''.join(random.choice(chars) for _ in range(size))
+def randzip():
     #TODO
     # Over 42,000 zip codes in the US, I don't see an easy way of pulling from a
     # list of valid codes.  Might be easier to generate
-randaddress();
+    #TODO
+    # Need to add fail cases for zip codes
+    """Returns a random zipcode"""
+    location = random.choice(open('ZipCodes.csv').readlines())
+    return(location)
+
+print(randaddress())
