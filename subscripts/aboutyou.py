@@ -1,7 +1,8 @@
 """ About You Page Subscript
-Contains:
-State, FirstName, MiddleName, LastName, Address,
-Apartment, DateOfBirth, Email, Phone """
+	Contains:
+	State, FirstName, MiddleName, LastName, Address, Apartment, DateOfBirth, Email,
+	Phone
+"""
 import random
 import string
 
@@ -9,12 +10,18 @@ from datagen import address as a
 from datagen import person as p
 
 def makeList():
+	"""	Returns the randomly generated fields in the about you page, accroding
+		to the DSA template
 	"""
-	TODO add docstring
-	"""
-	state = a.randstate()
+	address = a.randaddress() # ['street', zipcode', 'City', 'state']
+	state = address[3]
 	firstname = state + "CCSUFN"
 	lastname = state + "CCSULN"
+	#Does everyone need an apartment number?
 	apartment = random.randint(0, 9999)
 	email = "plautomation@thehartford.com"
-	return [state, firstname, p.randMI(), lastname, a.randaddress(), apartment, p.randDOB(), email, p.randphonenum()]
+	return [state, firstname, p.randMI(), lastname, ", ".join(map(str, address)),
+			apartment, p.randDOB(), email, p.randphonenum()]
+
+#print(makeList())
+

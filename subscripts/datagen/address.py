@@ -1,5 +1,6 @@
 import random
 import string
+import os
 
 def randaddress():
     """Returns a random address in the following format
@@ -10,12 +11,9 @@ def randaddress():
     # pull a random address from somewhere?
     # https://openaddresses.io/
     # https://pe.usps.com/text/pub28/welcome.htm
-    state = randstate()
-    #TODO - Create a way to get a random city
-    city = "ToDo"
-    street = randstreet()
-    zip = "{0:05d}".format(randzip())
-    return [street, city, state, zip]
+    location = randlocation() # ['zipcode', 'City', 'state']
+    # should it return it as a list or string?
+    return [randstreet(), location[1], location[2], location[0]]
 
 def randstate():
     """Returns a random state in abbreviated form"""
@@ -28,20 +26,38 @@ def randstate():
 
 def randstreet():
     """Returns a random street name and number"""
+    #TODO
+    # Find a way to generate valid street names
     size = 8
     chars = string.ascii_lowercase
     return ''.join(random.choice(chars) for _ in range(size))
-    #TODO
-    # How should we generate street names?
+    
 
 def randzip():
-    #TODO
-    # Over 42,000 zip codes in the US, I don't see an easy way of pulling from a
-    # list of valid codes.  Might be easier to generate
+    """Returns a 5 digit random zipcode from a file of valid zip codes"""
     #TODO
     # Need to add fail cases for zip codes
-    """Returns a random zipcode"""
-    location = random.choice(open('ZipCodes.csv').readlines())
-    return(location)
+    
+    # Use the below to check your current directory.  For my environment open would
+    # look in the home directory of the project and not this files directory
+    # cwd = os.getcwd()
+    # print(cwd)
+    zipcode = random.choice(open('subscripts\\datagen\\ZipCodes.csv').readlines())
+    return "{0:05d}".format(int(zipcode))
 
-print(randaddress())
+#alternate function to a random matching zip, city, and state
+def randlocation():
+    """Returns a random location consisting of a zip code, state and city
+        format
+            ['zipcode', 'City', 'state']
+        example.)
+            ['75607', 'Longview', 'TX']
+    """
+    location = random.choice(open('subscripts\\datagen\\location_database.csv').readlines())
+    loca_list = location.split(',')
+    loca_list[0] = "{0:05d}".format(int(loca_list[0]))  # format to 5 digit form
+    loca_list[2] = loca_list[2][:2]                     # remove new line char
+    return loca_list
+    
+for i in range(100):
+    randlocation()
