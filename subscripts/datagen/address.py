@@ -49,14 +49,14 @@ def randzip():
 def randlocation():
     """Returns a random location consisting of a zip code, state and city
         format
-            ['zipcode', 'City', 'state']
+            ['Street Number', 'Street', 'City', 'Zipcode', 'state']
         example.)
-            ['75607', 'Longview', 'TX']
+            ['25', 'Hayes Rd', 'East Hampton', '06424', 'CT']
     """
-    location = random.choice(open('subscripts\\datagen\\location_database.csv').readlines())
+    location = random.choice(open('AddressFile.csv').readlines())
     loca_list = location.split(',')
-    loca_list[0] = "{0:05d}".format(int(loca_list[0]))  # format to 5 digit form
-    loca_list[2] = loca_list[2][:2]                     # remove new line char
+    loca_list[3] = "{0:05d}".format(int(loca_list[3]))  # format to 5 digit form
+    loca_list[4] = loca_list[4][:2]                     # remove new line char
     return loca_list
     
 for i in range(100):
