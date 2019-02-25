@@ -8,9 +8,7 @@ def vehicletype():
     cartype = ["CAR", "SUV", "VAN", "PICKUP"]
     return random.choice(cartype)
 
-
-
-def vehiclevin():
+def vehicleVIN():
     """Returns a random 17 digit VIN"""
     size = 17
     chars = string.ascii_lowercase + string.digits
@@ -24,9 +22,12 @@ def vehiclevin():
     #10 = Letter indicating model year
     #11-17 = Production sequence numbers
 
+def vehicleownership():
+    """returns a randome vehicle ownership value"""
+    ownership = ["Paid For", "Financed", "Leased"]
+    return random.choice(ownership)
+
 def vehicleusage():
     """Returns a random vehicle use"""
-    vehicleuse = ["Pleasure", "Commute", "Farming", "Business"]
-    return random.choice(vehicleuse)
-
-
+    usage = ["Pleasure", "Commute", "Farming", "Business"]
+    return random.choice(usage)

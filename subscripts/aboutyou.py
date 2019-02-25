@@ -9,6 +9,9 @@ import string
 from datagen import address as a
 from datagen import person as p
 
+HEADER = ["FirstName","MiddleName","LastName","Address","Apartment",
+			"DateOfBirth", "Email", "Phone Number"]
+
 def makeList():
 	"""	Returns the randomly generated fields in the about you page, accroding
 		to the DSA template
