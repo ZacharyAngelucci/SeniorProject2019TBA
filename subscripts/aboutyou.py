@@ -1,7 +1,5 @@
 """ About You Page Subscript
-	Contains:
-	State, FirstName, MiddleName, LastName, Address, Apartment, DateOfBirth, Email,
-	Phone
+
 """
 import random
 import string
@@ -13,7 +11,7 @@ HEADER = ["FirstName","MiddleName","LastName","Address","Apartment",
 			"DateOfBirth", "Email", "Phone Number"]
 
 def makeList():
-	"""	Returns the randomly generated fields in the about you page, accroding
+	"""	Returns the randomly generated fields in the "About You" page, according
 		to the DSA template
 	"""
 	address = a.randaddress() # ['street', zipcode', 'City', 'state']

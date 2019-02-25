@@ -1,6 +1,6 @@
 import random
 
-def polarquestion(chance=.5):
+def yesno_question(chance=.5):
     """ Returns a yes or a no
     Args:
         chance (float): Chance for yes result [0->0.999...]

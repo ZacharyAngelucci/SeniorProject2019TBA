@@ -2,13 +2,13 @@ import random
 import string
 
 
-def vehicletype():
+def randtype():
     """Returns a random type of vehicle"""
 
     cartype = ["CAR", "SUV", "VAN", "PICKUP"]
     return random.choice(cartype)
 
-def vehicleVIN():
+def randVIN():
     """Returns a random 17 digit VIN"""
     size = 17
     chars = string.ascii_lowercase + string.digits
@@ -22,12 +22,12 @@ def vehicleVIN():
     #10 = Letter indicating model year
     #11-17 = Production sequence numbers
 
-def vehicleownership():
+def randownership():
     """returns a randome vehicle ownership value"""
     ownership = ["Paid For", "Financed", "Leased"]
     return random.choice(ownership)
 
-def vehicleusage():
+def randusage():
     """Returns a random vehicle use"""
     usage = ["Pleasure", "Commute", "Farming", "Business"]
     return random.choice(usage)
