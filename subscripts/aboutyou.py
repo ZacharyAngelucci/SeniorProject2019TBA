@@ -1,7 +1,10 @@
 import random
 import sys
-import datagen.person
-import datagen.address
+sys.path.insert(0, '../datagen')
+
+from address import *
+from person import *
+import string
 
 """ About You Page Subscript
 Contains:
@@ -10,13 +13,14 @@ Apartment, DateOfBirth, Email, Phone """
 
 #Missing: FirstName, LastName, Apartment, Email
 def makeList():
-    state = datagen.address.randstate()
-    FirstName = "CCSUFN" + state
-    LastName = "CCSULN" + state
-    Apartment = random.randint(1, 9999)
-    Email = "plautomation@thehartford.com"
-    aboutYouList = [state, FirstName, datagen.person.randMI(), LastName, datagen.address.randaddress(), Apartment, datagen.person.randDOB(), Email, datagen.person.randphonenum()]
-    return aboutYouList
+	state = randstate()
+	FirstName = "CCSUFN" + state
+	LastName = "CCSULN" + state
+	Apartment = random.randint(1, 9999)
+	Email = "plautomation@thehartford.com"
+	aboutYouList = [state, FirstName, randMI(), LastName, randaddress(), Apartment, randDOB(), Email, randphonenum()]
+	return aboutYouList
 
-
-
+List = makeList();
+for x in range (len(List)):
+		print (List[x],)

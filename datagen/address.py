@@ -5,6 +5,7 @@ def randaddress():
     st = randstate();
     street = randstreet();
     zp = randzip();
+    print (street + ", " + st + ", " + zp);
 
 def randstate():
     """Returns a random state in abbreviated form"""
