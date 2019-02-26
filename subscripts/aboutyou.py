@@ -1,26 +1,26 @@
+""" About You Page Subscript
+"""
 import random
-import sys
-sys.path.insert(0, '../datagen')
-
-from address import *
-from person import *
 import string
 
-""" About You Page Subscript
-Contains:
-State, FirstName, MiddleName, LastName, Address,
-Apartment, DateOfBirth, Email, Phone """
+from datagen import address as a
+from datagen import person as p
 
-#Missing: FirstName, LastName, Apartment, Email
+HEADER = ["FirstName","MiddleName","LastName","Address","Apartment",
+			"DateOfBirth", "Email", "Phone Number"]
+
 def makeList():
-	state = randstate()
-	FirstName = "CCSUFN" + state
-	LastName = "CCSULN" + state
-	Apartment = random.randint(1, 9999)
-	Email = "plautomation@thehartford.com"
-	aboutYouList = [state, FirstName, randMI(), LastName, randaddress(), Apartment, randDOB(), Email, randphonenum()]
-	return aboutYouList
+	"""	Returns the randomly generated fields in the "About You" page, according
+		to the DSA template
+	"""
+	address = a.randaddress() # ['street', zipcode', 'City', 'state']
+	state = address[3]
+	firstname = state + "CCSUFN"
+	lastname = state + "CCSULN"
+	#Does everyone need an apartment number?
+	apartment = random.randint(0, 9999)
+	email = "plautomation@thehartford.com"
+	return [state, firstname, p.randMI(), lastname, ", ".join(map(str, address)),
+			apartment, p.randDOB(), email, p.randphonenum()]
 
-List = makeList();
-for x in range (len(List)):
-		print (List[x],)
+#print(makeList())
