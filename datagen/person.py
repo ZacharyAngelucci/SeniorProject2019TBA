@@ -3,24 +3,23 @@ import string
 import calendar
 from datetime import date, timedelta
 
-def randMI(chance=0.8):
+def randMI():
     """Returns a middle initial as a random letter from the alphabet
-    Args:
-        chance (float): Chance for having a middle name [0->0.999...]
-            Defaults to 0.8
+    at an 80% chance
     """
     #should I keep this function?  How do we determine the chance of having no
     # middle initial?  set a default chance and let the function caller decide?
+    chance = .80
     if random.random() <= chance:
         return random.choice(string.ascii_uppercase)
     else:
         return ""
 
-def randDOB(minage=55, maxage=120):
+def randDOB(minage=0, maxage=120):
     """Returns a random Date Of Birth in the format of ddmmyyyy
     Args:
         minage (int): Minimum age in years the date of birth can be
-            Defaults to 55 (AARP valid age)
+            Defaults to 0
         maxage (int): Maximum age in years the date of birth can be
             Defaults to 120 (oldest living person currently)
     """
@@ -31,7 +30,7 @@ def randDOB(minage=55, maxage=120):
     randdays = random.randint(0, (maxage - minage) * 365)
     #note the above calculation does not account for the extra day in leap years
     randdelta = timedelta(days=randdays)
-    return "{0.month:02d}{0.day:02d}{0.year:4d}".format(mindate - randdelta)
+    return "{0.day:02d}{0.month:02d}{0.year:4d}".format(mindate - randdelta)
 
 def randphonenum():
     """Returns a random phone number following the North American Numbering Plan
