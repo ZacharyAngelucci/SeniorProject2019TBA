@@ -1,7 +1,7 @@
 """ Your Vehicles Page Subscript
     
 """
-from datagen import vehicle as v
+from datagen import vehiclegen
 from datagen import general as g
 
 HEADER = ["NumOfVehicles", "VehicleType", "VehicleVin", "VehicleOwnership",
@@ -15,5 +15,5 @@ def makeList():
     """
     #As per the initial test case 1 driver 1 vehicle
     vehiclenum = 1
-    return [vehiclenum, v.randtype(), v.randVIN() , v.randownership(),
-            g.yesno_question(), v.randusage()]
+    return [vehiclenum, vehiclegen.randtype(), vehiclegen.randVIN() , vehiclegen.randownership(),
+            g.yesno_question(), vehiclegen.randusage()]

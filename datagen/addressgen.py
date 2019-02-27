@@ -53,7 +53,7 @@ def randlocation():
         example.)
             ['25', 'Hayes Rd', 'East Hampton', '06424', 'CT']
     """
-    location = random.choice(open('AddressFile.csv').readlines())
+    location = random.choice(open('datagen\AddressFile.csv').readlines())
     loca_list = location.split(',')
     loca_list[3] = "{0:05d}".format(int(loca_list[3]))  # format to 5 digit form
     loca_list[4] = loca_list[4][:2]                     # remove new line char
