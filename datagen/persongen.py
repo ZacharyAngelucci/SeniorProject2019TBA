@@ -14,7 +14,7 @@ def randMI(chance=0.8):
     if random.random() <= chance:
         return random.choice(string.ascii_uppercase)
     else:
-        return ""
+        return " "
 
 def randDOB(minage=55, maxage=120):
     """Returns a random Date Of Birth in the format of ddmmyyyy
