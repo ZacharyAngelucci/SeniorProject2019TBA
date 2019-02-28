@@ -1,3 +1,7 @@
+import random
+import string
+import os
+
 def randaddress():
     """Returns a random address in the following format
     [Street, city/town, 2 letter state, Zip code]
