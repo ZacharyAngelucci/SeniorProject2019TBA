@@ -1,5 +1,4 @@
 """ Your Vehicles Page Subscript
-    
 """
 from datagen import vehiclegen
 from datagen import general as g
