@@ -58,6 +58,3 @@ def randlocation():
     loca_list[3] = "{0:05d}".format(int(loca_list[3]))  # format to 5 digit form
     loca_list[4] = loca_list[4][:2]                     # remove new line char
     return loca_list
-    
-for i in range(100):
-    randlocation()
