@@ -40,7 +40,3 @@ def randstate():
               "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
               "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
     return random.choice(states)
-
-
-for i in range(3):
-    print(randaddress())
