@@ -1,5 +1,7 @@
 import yaml
 import os.path
+import csv
+
 from subscripts import aboutyou, yourdrivers, yourvehicles
 
 configData = {'Iterations': 0}
@@ -15,12 +17,11 @@ else:
         yaml.dump(configData, f, default_flow_style=False)
     quit()
 
-for i in range(configData['Iterations']):
-    output = aboutyou.makeList()
-    testID = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
-    list.insert(output, 0, testID)
-    print(output)
-
-#Test Case field - This has to be a mix of Test case identifier + Scenario Type + Type of Application + Vehicle Driver Combinations + State
-#Example : TC001-E2E-Web-1V1D-AL - This has Test Case Name+Numric Number (3 digits) and followed by the above mentioned combination.
-#So for the next test case, the sequence changes to 002 and Test case name is TC002-E2E-Web-1V1D-MS
+with open('Output.csv', 'w', newline='') as csvFile:
+    dataWriter = csv.writer(csvFile, dialect='excel')
+    dataWriter.writerow(['Test Case', 'State', 'FirstName', 'MiddleName', 'LastName', 'Address', 'Apartment', 'DateOfBirth', 'Email', 'Phone', 'NumOfVehicles', 'VehicleType1', 'VehicleVin1', 'VehicleOwnverShip1', 'VehicleRegistered1', 'VehicleUsage1',	'NumberOfDrivers', 'DriverAdded', 'DriverGender1', 'DriverEmploymentStatus1', 'DriverMaritalStatus1', 'CurrentResident1', 'LivedLast5Years1', 'AnyAccidents1', 'DefensiveDriving', 'OwnSmallBusiness', 'Current Insurance Details',	'Bodily Injury Liability', 'CurrentPolicyExpiry', 'Policy Term', 'SSN'])
+    for i in range(configData['Iterations']):
+        output = aboutyou.makeList()
+        testID = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
+        list.insert(output, 0, testID)
+        dataWriter.writerow(output)
