@@ -14,7 +14,7 @@ def makeList():
     """
     address = addressgen.randaddress(
     )  # [Street, city/town, 2 letter state, Zip code]
-    state = address[3]
+    state = address[2]
     firstname = state + "CCSUFN"
     lastname = state + "CCSULN"
     # Does everyone need an apartment number?
