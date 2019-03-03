@@ -9,18 +9,10 @@ def randtype():
     return random.choice(cartype)
 
 def randVIN():
-    """Returns a random 17 digit VIN"""
-    size = 17
-    chars = string.ascii_lowercase + string.digits
-    return ''.join(random.choice(chars) for _ in range(size))
-    #TODO
-    #Need to generate VIN relistically based on these factors
-    #1 = Country of Origin
-    #2 = Manufacturer
-    #3 = Vehicle Type when combined with first two digits
-    #4-9 = Vehicle descriptor(model, body type, etc)
-    #10 = Letter indicating model year
-    #11-17 = Production sequence numbers
+    """Returns a random 17 digit VIN from a list of 6 valid VINs"""
+    vin = ["JTHBD182610032265", "JNKAY41E23M002732", "2HGES267X4H566590", "YV1RH59H342419180", "1G8ZJ5576PZ244260", "1FALP6535SK248174"]
+    return random.choice(vin)
+
 
 def randownership():
     """returns a randome vehicle ownership value"""
@@ -31,3 +23,5 @@ def randusage():
     """Returns a random vehicle use"""
     usage = ["Pleasure", "Commute", "Farming", "Business"]
     return random.choice(usage)
+
+
