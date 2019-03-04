@@ -51,7 +51,7 @@ def policyexpiration():
 
 def policyterm():
     """Return a policy term length"""
-    term = ["6 Months", "1 Year"]
+    term = ["6 months", "12 months"]
     return random.choice(term)
     #TODO
     #We need to change the random genration of policy expiration date based on how long the policy term is
