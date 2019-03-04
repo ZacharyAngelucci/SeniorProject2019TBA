@@ -7,36 +7,35 @@ def randgender():
     gender = ["Male", "Female"]
     return random.choice(gender)
 
-def employmentstatus():
-    """Returns a random employment status"""
-    estatus = ["Employed", "Unemployed"]
-    return random.choice(estatus)
-    # TODO
-    # Find out the rest of the drop down coices
 def maritalstatus():
     """Returns a random marital status"""
-    mstatus = ["Single", "Married", "Divorced"]
+    mstatus = ["Single (never married)", "Married", "Domestic Partner", "Widowed", "Legally Separated", "Divorced"]
     return random.choice(mstatus)
-    # TODO
-    # Find out the rest of the drop down coices
+
+def employmentstatus():
+    """Returns a random employment status"""
+    estatus = ["Self Employed", "Employed", "Unemployed", "Homemaker", "Retired", "Disabled", "Student"]
+    return random.choice(estatus)
+
 def currentresidence():
     """Returns a random residence type"""
-    rstatus = ["I own my home", "Apartment"]
+    rstatus = ["I own my home", "I own my condo", "Rental", "Mobile/Motorhome", "Other"]
     return random.choice(rstatus)
-    # TODO
-    # Find out the rest of the drop down coices
+
 def currentlyinsured():
     """Returns a random insurance status"""
-    istatus = ["Yes, with your own policy", "No"]
+    istatus = ["Yes, with your own policy", "Yes, on your parent's policy", "Yes, your employer insures your car", 
+    "No, your insurance ran out less than a month ago", "No, your insurance ran out more than a month ago", 
+    "No, due to your military deployment/overseas", "Never needed insurance until now"]
     return random.choice(istatus)
-    # TODO
-    # Find out the rest of the drop down coices
+
 def coveragerange():
     """Return random coverage range"""
-    range = ["$100,000/$300,000"]
+    range = ["$10,000 / $20,000", "$15,000 / $30,000", "$20,000 / $40,000", "$25,000 / $50,000", "$30,000 / $60,000",
+    "$35,000 / $80,000", "$50,000 / $100,000", "$100,000 / $300,000", "$250,000 / $500,000", "$500,000 / $500,000 or greater",
+    "single limits less than $25,000", "single limits between $25,000 - $50,000", "single limits between $50,001 - $100,000",
+    "single limits between $100,001 / $300,000", "single limits between $100,001 / $300,000", "single limits greater than $300,000", "Unknown"]
     return random.choice(range)
-    #TODO
-    #Find out the rest of the drop down coices
 
 def strTimeProp(start, end, format, prop):
     """Calculates a random date in between two points in time"""
