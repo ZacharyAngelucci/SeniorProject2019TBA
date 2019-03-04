@@ -31,11 +31,11 @@ def currentlyinsured():
 
 def coveragerange():
     """Return random coverage range"""
-    range = ["$10,000 / $20,000", "$15,000 / $30,000", "$20,000 / $40,000", "$25,000 / $50,000", "$30,000 / $60,000",
+    crange = ["$10,000 / $20,000", "$15,000 / $30,000", "$20,000 / $40,000", "$25,000 / $50,000", "$30,000 / $60,000",
     "$35,000 / $80,000", "$50,000 / $100,000", "$100,000 / $300,000", "$250,000 / $500,000", "$500,000 / $500,000 or greater",
     "single limits less than $25,000", "single limits between $25,000 - $50,000", "single limits between $50,001 - $100,000",
     "single limits between $100,001 / $300,000", "single limits between $100,001 / $300,000", "single limits greater than $300,000", "Unknown"]
-    return random.choice(range)
+    return random.choice(crange)
 
 def strTimeProp(start, end, format, prop):
     """Calculates a random date in between two points in time"""
