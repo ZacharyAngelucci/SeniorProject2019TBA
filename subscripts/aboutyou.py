@@ -12,7 +12,7 @@ def makeList():
     """	Returns the randomly generated fields in the "About You" page, according
             to the DSA template
     """
-    address = addressgen.randaddress(
+    address = addressgen.randaddress2(
     )  # [Street, city/town, 2 letter state, Zip code]
     state = address[2]
     firstname = state + "CCSUFN"

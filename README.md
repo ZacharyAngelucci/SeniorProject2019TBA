@@ -33,3 +33,11 @@ Future configurations
 - Output type
     - File type test data is outputted
     - Currently csv, will add json and nosql in future
+
+### File Structure
+    .
+    ├── subscripts                  # Scirpts for each page of data
+    ├── datagen                     # Categorized random data generator modules
+    ├── master.py
+    ├── config.yaml
+    └── README.md

@@ -56,9 +56,13 @@ def policyterm():
     #TODO
     #We need to change the random genration of policy expiration date based on how long the policy term is
 
-def ssn():
-    #TODO
-    #Its impossible to generate valid ssn
-
-#print(policyterm())
-#print(randgender(), policyexpiration(), coveragerange(), employmentstatus(), maritalstatus(), currentresidence(), currentlyinsured())
+def randSSN():
+    """Return an invalid randomly generated SSN
+        SSN syntax: nnn-nn-nnnn
+        Where
+            -n is a random integer
+            -No digit group can consist entirely of 0's
+            -The first digit group cannot be 666, or 900-999
+    """
+    #Returns an invalid SSN so we don't accidentally use someones actual SSN
+    return "000-{0:02d}-{1:04d}".format(random.randint(1,99), random.randint(1,9999))

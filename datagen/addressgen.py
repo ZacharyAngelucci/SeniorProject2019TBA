@@ -46,7 +46,6 @@ def randaddress2():
     # just preventing it from picking the last line so i can see run time perfomance
     file.seek(random.randint(0, file_size-100), 0)
 
-    print(file.tell())
     # will probably be in the middle of a line after seek() skip to next line
     file.readline()
     line = file.readline()
