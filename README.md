@@ -36,7 +36,7 @@ Future configurations
 
 ### File Structure
     .
-    ├── subscripts                  # Scirpts for each page of data
+    ├── subscripts                  # Scripts for each page of data
     ├── datagen                     # Categorized random data generator modules
     ├── master.py
     ├── config.yaml
