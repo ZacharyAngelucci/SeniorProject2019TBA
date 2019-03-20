@@ -2,25 +2,30 @@ import yaml
 import os.path
 import csv
 
-from subscripts import aboutyou, yourdrivers, yourvehicles
+from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
-configData = {'Iterations': 0}
-output = None
-testID = None
 
-if os.path.isfile("config.yaml"):
-    with open('config.yaml') as f:
-        configData = yaml.safe_load(f)
-else:
-    with open('config.yaml', 'w') as f:
-        yaml.dump(configData, f, default_flow_style=False)
-    quit()
+def main():
+    config_data = configgen.config()
 
-with open('Output.csv', 'w', newline='') as csvFile:
-    dataWriter = csv.writer(csvFile, dialect='excel')
-    dataWriter.writerow(['Test Case', 'State', 'FirstName', 'MiddleName', 'LastName', 'Address', 'Apartment', 'DateOfBirth', 'Email', 'Phone', 'NumOfVehicles', 'VehicleType1', 'VehicleVin1', 'VehicleOwnverShip1', 'VehicleRegistered1', 'VehicleUsage1',	'NumberOfDrivers', 'DriverAdded', 'DriverGender1', 'DriverEmploymentStatus1', 'DriverMaritalStatus1', 'CurrentResident1', 'LivedLast5Years1', 'AnyAccidents1', 'DefensiveDriving', 'OwnSmallBusiness', 'Current Insurance Details',	'Bodily Injury Liability', 'CurrentPolicyExpiry', 'Policy Term', 'SSN'])
-    for i in range(configData['Iterations']):
-        output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
-        testID = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
-        list.insert(output, 0, testID)
-        dataWriter.writerow(output)
+    with open('Output.csv', 'w', newline='') as csvFile:
+        data_writer = csv.writer(csvFile, dialect='excel')
+        data_writer.writerow(make_header(1, 1))
+        for i in range(config_data['Iterations']):
+            output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
+            test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
+            list.insert(output, 0, test_id)
+            data_writer.writerow(output)
+
+
+def make_header(vpages, dpages):
+    header = ["Test Case"] + aboutyou.HEADER
+    for i in range(1, vpages):
+        temp = list(yourvehicles.HEADER.len() - 1)
+        for j in range(1, yourvehicles.HEADER.len()):
+            temp[j] = yourvehicles.HEADER[j] + i
+    return header
+
+
+def export(out):
+    return
