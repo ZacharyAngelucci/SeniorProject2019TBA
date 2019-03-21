@@ -20,12 +20,23 @@ def main():
 
 def make_header(vpages, dpages):
     header = ["Test Case"] + aboutyou.HEADER
-    for i in range(1, vpages):
-        temp = list(yourvehicles.HEADER.len() - 1)
-        for j in range(1, yourvehicles.HEADER.len()):
-            temp[j] = yourvehicles.HEADER[j] + i
+    if vpages != 0:
+        temp = [yourvehicles.HEADER[0]]
+        for i in range(0, vpages):
+            for j in range(1, len(yourvehicles.HEADER)):
+                temp.append(yourvehicles.HEADER[j] + str(i + 1))
+            header.extend(temp)
+    if dpages != 0:
+        temp = [yourdrivers.HEADER[0]]
+        for i in range(0, dpages):
+            for j in range(1, len(yourdrivers.HEADER)):
+                temp.append(yourdrivers.HEADER[j] + str(i + 1))
+            header.extend(temp)
     return header
 
 
 def export(out):
     return
+
+
+main()

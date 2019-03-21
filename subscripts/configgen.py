@@ -17,6 +17,6 @@ def create_config():
 
 
 def load_config():
-    with open('config.yaml', 'w') as f:
-        config_data = yaml.safe_load(f)
-        return config_data
+    with open('config.yaml') as f:
+        return yaml.safe_load(f)
+
