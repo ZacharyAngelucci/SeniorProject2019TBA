@@ -18,24 +18,24 @@ def main():
             data_writer.writerow(output)
 
 
-def make_header(vpages, dpages):
+def make_header(v, d):
     header = ["Test Case"] + aboutyou.HEADER
-    if vpages != 0:
+    if v != 0:
         temp = [yourvehicles.HEADER[0]]
-        for i in range(0, vpages):
+        for i in range(0, v):
             for j in range(1, len(yourvehicles.HEADER)):
                 temp.append(yourvehicles.HEADER[j] + str(i + 1))
             header.extend(temp)
-    if dpages != 0:
+    if d != 0:
         temp = [yourdrivers.HEADER[0]]
-        for i in range(0, dpages):
+        for i in range(0, d):
             for j in range(1, len(yourdrivers.HEADER)):
                 temp.append(yourdrivers.HEADER[j] + str(i + 1))
             header.extend(temp)
     return header
 
 
-def export(out):
+def export(out, format):
     return
 
 
