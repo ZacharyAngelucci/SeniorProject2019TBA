@@ -4,7 +4,7 @@ import random
 
 from datagen import addressgen, persongen
 
-HEADER = ["FirstName", "MiddleName", "LastName", "Address", "Apartment",
+HEADER = ["State", "FirstName", "MiddleName", "LastName", "Address", "Apartment",
           "DateOfBirth", "Email", "Phone Number"]
 
 
