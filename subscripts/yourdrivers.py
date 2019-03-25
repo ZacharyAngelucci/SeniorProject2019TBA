@@ -6,7 +6,8 @@ from datagen import general, drivergen
 HEADER = ['NumberOfDrivers', 'DriverAdded', 'DriverGender1', 'DriverEmploymentStatus1',
           'DriverMaritalStatus1', 'CurrentResident1', 'LivedLast5Years1', 'AnyAccidents1',
           'DefensiveDriving', 'OwnSmallBusiness', 'Current Insurance Details', 'Bodily Injury Liability',
-          'CurrentPolicyExpiry', 'Policy Term', 'SSN']
+          'CurrentPolicyExpiry', 'Policy Term']
+
 
 def makeList():
     numDrivers = 1
@@ -23,9 +24,8 @@ def makeList():
     bodilyinjuryliability = drivergen.coveragerange()
     currentpolicyexpiry = drivergen.policyexpiration()
     policyterm = drivergen.policyterm()
-    ssn = drivergen.randSSN()
 
     return [numDrivers, driverAdded, drivergender1, driveremploymentstatus1,
             drivermaritalstatus1, currentresident1, livedLast5Years, accidents,
             defensiveDriving, ownSmallBusiness, currentinsurancedetails,
-            bodilyinjuryliability, currentpolicyexpiry, policyterm, ssn]
+            bodilyinjuryliability, currentpolicyexpiry, policyterm]
