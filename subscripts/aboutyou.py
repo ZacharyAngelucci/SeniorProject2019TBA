@@ -8,18 +8,17 @@ HEADER = ["State", "FirstName", "MiddleName", "LastName", "Address", "Apartment"
           "DateOfBirth", "Email", "Phone Number"]
 
 
-def makeList():
+def makeList(state='all'):
     """	Returns the randomly generated fields in the "About You" page, according
             to the DSA template
     """
-    address = addressgen.randaddress(
-    )  # [Street, city/town, 2 letter state, Zip code]
+    address = addressgen.randaddress(state)  # [street, city, state, zip code, unit]
+    address_body = address[:2]
+    address_body.append(address[2] + " " + address[3])
+    address_body_str = ", ".join(map(str, address_body))
     state = address[2]
     firstname = state + "CCSUFN"
     lastname = state + "CCSULN"
-    # Apartment is optional, currently apartment info from openaddress.io
-    #   consists of more than just number addresses.
-    apartment = ''
     email = "plautomation@thehartford.com"
-    return [state, firstname, persongen.randMI(), lastname, ", ".join(map(str, address)),
-            apartment, persongen.randDOB(), email, persongen.randphonenum()]
+    return [state, firstname, persongen.randMI(), lastname, address_body_str,
+            address[4], persongen.randDOB(), email, persongen.randphonenum()]
