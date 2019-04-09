@@ -1,21 +1,18 @@
 import yaml
 import os.path
 import csv
+import json
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
 
 def main():
     config_data = configgen.config()
-
-    with open('Output.csv', 'w', newline='') as csvFile:
-        data_writer = csv.writer(csvFile, dialect='excel')
-        data_writer.writerow(make_header(1, 1))
-        for i in range(config_data['Iterations']):
-            output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
-            test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
-            list.insert(output, 0, test_id)
-            data_writer.writerow(output)
+    for i in range(config_data['Iterations']):
+        output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
+        test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
+        list.insert(output, 0, test_id)
+        export(output, "cvs")
 
 
 def make_header(v, d):
@@ -35,8 +32,19 @@ def make_header(v, d):
     return header
 
 
-def export(out, format):
-    return
+def export(out, f):
+    if f == "json":
+        json.dump(out, 'Output.json')
+    else:
+        if os.path.isfile('Output.csv'):
+            with open('Output.csv', 'w', newline='') as csvFile:
+                data_writer = csv.writer(csvFile, dialect='excel')
+                data_writer.writerow(out)
+        else:
+            with open('Output.csv', 'w', newline='') as csvFile:
+                data_writer = csv.writer(csvFile, dialect='excel')
+                data_writer.writerow(make_header(1, 1))
+                data_writer.writerow(out)
 
 
 main()
