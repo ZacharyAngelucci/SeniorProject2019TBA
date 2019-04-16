@@ -18,7 +18,8 @@ def makeList():
     currentresident1 = drivergen.currentresidence()
     livedLast5Years = general.yesno_question()
     accidents = general.yesno_question()
-    defensiveDriving = general.yesno_question()
+    #defensiveDriving = general.yesno_question()
+    defensiveDriving = 'No'
     ownSmallBusiness = general.yesno_question()
     currentinsurancedetails = drivergen.currentlyinsured()
     bodilyinjuryliability = drivergen.coveragerange()
