@@ -1,19 +1,26 @@
 import time
 import csv
+import os
 from selenium import webdriver
-from selenium.webdriver import ActionChains
-from selenium.webdriver.common import actions
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.firefox.options import Options
 
 print("Starting DSA App Test...")
 testReport = open("testReport.txt","w+")
 testReport.write("Test Report -")
+
+# Clears terminal
+os.system('clear')
+
+# Choose Run Mode
+modeSelection = input("Choose Test/Demo Mode\n")
+if modeSelection == "demo":
+    modeSelection = False
+else:
+    modeSelection = True
+
 # Read from CSV file
 # Currently using sample test data from testData.csv
-from selenium.webdriver.support.wait import WebDriverWait
-with open('testData.csv') as csvfile:
+with open('/Users/yagnamandava/Documents/GitHub/SeniorProject2019TBA/Selenium/testData.csv') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     for row in readCSV:
         firstName = row[2]
@@ -39,6 +46,7 @@ with open('testData.csv') as csvfile:
         lineCount = row[30]
         print(lineCount+" - CSV File Found...")
         testReport.write("Test #" + lineCount)
+
         # splits address into individual fields
         address = address.split(',')
         streetAd = address[0]
@@ -46,14 +54,14 @@ with open('testData.csv') as csvfile:
 
         print("Opening Headless Web Driver...")
         options = Options()
-        options.headless = True
+        options.headless = modeSelection
         driver = webdriver.Firefox(options=options)
-        driver.implicitly_wait(30)
+        driver.implicitly_wait(40)
         print ("Headless Firefox Initialized")
         # Navigate to the application home page
         driver.get("https://qa-quote.thehartford.com/sales/landing-page?zip="+zipCode+"&PLCode=002121&organic=true&affinity=AARP&lob=Auto")
         print("Launching DSA App...")
-
+        time.sleep(5)
         # ABOUT YOU PAGE
         # DOB
         driver.find_element_by_id("dateOfBirth").send_keys(dob)
@@ -73,7 +81,6 @@ with open('testData.csv') as csvfile:
 
         # popup confirmation
         # This dismisses a pop up window appears with saved profiles.
-
         driver.find_element_by_id("modal_btn_icon").click()
 
         print("About You Finished...")
@@ -168,7 +175,6 @@ with open('testData.csv') as csvfile:
         dropDown = driver.find_element_by_xpath("//a[@id='licensedDuration' and contains(.,'Less than 1 year')]")
         driver.execute_script("arguments[0].click();",dropDown)
         time.sleep(5)
-        #driver.find_element_by_id("icon icon-close").click()
 
         # During the past 5 years, have you had an accident (regardless of fault), violation or claim?
         if accident == "Yes":
@@ -224,7 +230,7 @@ with open('testData.csv') as csvfile:
         # How long have you been with your current carrier?
         dropDown = driver.find_element_by_xpath("//a[@id='yearsCurrentInsurance' and contains(.,'1 year')]")
         driver.execute_script("arguments[0].click();",dropDown)
-        time.sleep(2)
+        time.sleep(4)
 
         # Is your policy 6 or 12 months long?
         if polterm == "6 months":
