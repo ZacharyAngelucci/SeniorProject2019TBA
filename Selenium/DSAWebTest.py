@@ -5,9 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
 def start():
-    # Clears terminal
-    os.system("cls")
-
     # Choose Run Mode
     modeSelection = input("Choose Test/Demo Mode\n")
     if modeSelection == "demo":
@@ -41,7 +38,7 @@ def readCSV():
     lineCount = []
     # Read from CSV file
     # Currently using sample test data from testData.csv
-    with open('testData.csv') as csvfile:
+    with open('/Users/yagnamandava/Documents/GitHub/SeniorProject2019TBA/Selenium/testData.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         for row in readCSV:
             firstName.append(row[2])
@@ -96,9 +93,8 @@ def readCSV():
 
 
 
-def webTest(array, modeSelection):
+def webTest(array, modeSelection, n):
     """Executes Website Test with parameters asking for array of data and test mode"""
-    n = 0
     print("Opening Headless Web Driver...")
     options = Options()
     options.headless = modeSelection
@@ -294,8 +290,8 @@ def webTest(array, modeSelection):
     # Click "Choose Your Coverages"
     driver.find_element_by_id("current-insurance-next-button").click()
     time.sleep(5)
-    print(array[1][20]+" - Test Complete!")
     # Click next on popup
     #driver.find_element_by_xpath("btn btn-primary btn-lg btn-block").click()
+    print("FINISHED")
     driver.close()
 
