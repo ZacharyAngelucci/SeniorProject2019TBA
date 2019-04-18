@@ -11,7 +11,6 @@ NUMBER,STREET,CITY,STATE,POSTCODE,UNIT
 8726,South Kline Street,Littleton,CO,80127,103
 188,South Sable,Aurora,CO,80012,107
 1241,Clarkes Circle,Castle Rock,CO,80109,
-2627,County Road 141,DURANGO,CO,0,
 10569,Wildhurst Circle,Highlands Ranch,CO,80126,
 828,Burnham Lane,BAYFIELD,CO,81122,
 505,West Hook Drive,PUEBLO WEST,CO,81007,
@@ -407,7 +406,6 @@ NUMBER,STREET,CITY,STATE,POSTCODE,UNIT
 213,Jackson Street,PUEBLO,CO,81004,
 14920,Road 30.2,Dolores,CO,81323,
 1620,South Laredo Court,Aurora,CO,80017,
-42905,County Road County Road 17-21,ELIZABETH,CO,0,
 803,Blondel Street,FORT COLLINS,CO,80524,
 3099,East Weaver Avenue,Centennial,CO,80121,
 86,Oak Ridge Road,Snowmass Village,CO,81615,
@@ -879,7 +877,6 @@ NUMBER,STREET,CITY,STATE,POSTCODE,UNIT
 2465,Lewis Street,Lakewood,CO,80215,
 657,Fairchild Drive,Highlands Ranch,CO,80126,
 11887,East Kepner Drive,Aurora,CO,80012,
-232,East Valley View Drive,BAYFIELD,CO,0,
 608,North N Traver Trail,Glenwood Springs,CO,81601,
 4000,E,Boulder,CO,80303,
 15772,East Progress Drive,Centennial,CO,80015,
@@ -895,7 +892,6 @@ NUMBER,STREET,CITY,STATE,POSTCODE,UNIT
 11024,Twenty Mile Road,Parker,CO,80134,200
 2980,North Avenue,Grand Junction,CO,81504,
 21258,East Nassau Avenue,Aurora,CO,80013,
-7021,County Road 136,HESPERUS,CO,0,
 14808,East 12Th Avenue,Aurora,CO,80011,
 11703,Elk Head Range Road,Littleton,CO,80127,
 1942,N Road,Fruita,CO,81521,

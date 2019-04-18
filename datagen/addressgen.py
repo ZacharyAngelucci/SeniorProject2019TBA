@@ -25,9 +25,18 @@ def randaddress(state='all'):
     # skip to next complete line
     file.readline()
     line = file.readline()
+    #print("Current Line:\t" + str(line))
     address_parts = line.split(',')
+    #print("Split Line:\t " + str(address_parts))
     # format zipcode to 5 digit
-    address_parts[4] = "{0:05d}".format(int(address_parts[4].split('-')[0]))
+    try:
+        address_parts[4] = "{0:05d}".format(int(address_parts[4]))
+    except ValueError as identifier:
+        print(identifier)
+        print("Value Error:\t-" + " ".join(address_parts))
+    except:
+        print("unknown error")
+    
     # remove new line char
     address_parts[5] = address_parts[5][:2]
     # Return as [street num + street, city, state, zip code, unit] format
