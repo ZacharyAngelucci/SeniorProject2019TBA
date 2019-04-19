@@ -14,6 +14,7 @@ def start():
     return modeSelection
 
 def readCSV():
+    count = 1
     listOfRows = []
     firstName = []
     lastName = []
@@ -38,7 +39,7 @@ def readCSV():
     lineCount = []
     # Read from CSV file
     # Currently using sample test data from testData.csv
-    with open('/Users/yagnamandava/Documents/GitHub/SeniorProject2019TBA/Selenium/testData.csv') as csvfile:
+    with open('Output.csv') as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         for row in readCSV:
             firstName.append(row[2])
@@ -61,8 +62,8 @@ def readCSV():
             bodyCoverage.append(row[27])
             polExpiry.append(row[28])
             polterm.append(row[29])
-            lineCount.append(row[30])
-
+            lineCount.append(count)
+            count += 1
             # splits address into individual fields
             #address = address[row].split(',')
             #streetAd = address[0]
@@ -106,8 +107,8 @@ def webTest(array, modeSelection, n):
     # splits address into individual fields
     address = array[3][n].split(',')
     streetAd = address[0]
-    zipCode = address[3][1:]
-    #print(address)
+    state = address[2]
+    zipCode = address[3]
     driver.get("https://qa-quote.thehartford.com/sales/landing-page?zip="+zipCode+"&PLCode=002121&organic=true&affinity=AARP&lob=Auto")
     print("Launching DSA App...")
     time.sleep(5)
@@ -124,9 +125,12 @@ def webTest(array, modeSelection, n):
     # Street Address
     driver.find_element_by_id("aboutMeAddress").send_keys(streetAd)
 
+    # VT special button
+    if (state == " VT"):
+        driver.find_element_by_id("vtTerms_div_add_0").click()
+
     # About You - Click Next
     driver.find_element_by_id("about-you-next-button").click()
-
 
     # popup confirmation
     # This dismisses a pop up window appears with saved profiles.
