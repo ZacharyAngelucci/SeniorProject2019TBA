@@ -39,7 +39,7 @@ def readCSV():
     lineCount = []
     # Read from CSV file
     # Currently using sample test data from testData.csv
-    with open('Output.csv') as csvfile:
+    with open(os.path.join( os.getcwd(), '..', 'Output.csv' )) as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         for row in readCSV:
             firstName.append(row[2])
@@ -64,10 +64,6 @@ def readCSV():
             polterm.append(row[29])
             lineCount.append(count)
             count += 1
-            # splits address into individual fields
-            #address = address[row].split(',')
-            #streetAd = address[0]
-            #zipCode = address[3][1:]
     # Create an array of arrays    
     listOfRows.append(firstName)
     listOfRows.append(lastName)
@@ -126,12 +122,13 @@ def webTest(array, modeSelection, n):
     driver.find_element_by_id("aboutMeAddress").send_keys(streetAd)
 
     # VT special button
-    if (state == " VT"):
-        driver.find_element_by_id("vtTerms_div_add_0").click()
+    #if (state == " VT"):
+    #    driver.find_element_by_id("vtTerms_div_add_0").click()
 
     # About You - Click Next
     driver.find_element_by_id("about-you-next-button").click()
-
+    time.sleep(1)
+    
     # popup confirmation
     # This dismisses a pop up window appears with saved profiles.
     driver.find_element_by_id("modal_btn_icon").click()

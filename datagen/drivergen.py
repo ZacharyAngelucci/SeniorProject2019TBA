@@ -24,9 +24,7 @@ def currentresidence():
 
 def currentlyinsured():
     """Returns a random insurance status"""
-    istatus = ["Yes, with your own policy", "Yes, on your parent's policy", "Yes, your employer insures your car", 
-    "No, your insurance ran out less than a month ago", "No, your insurance ran out more than a month ago", 
-    "No, due to your military deployment/overseas", "Never needed insurance until now"]
+    istatus = ["Yes, with your own policy"]
     return random.choice(istatus)
 
 def coveragerange():
@@ -47,7 +45,7 @@ def strTimeProp(start, end, format, prop):
 def policyexpiration():
     """Return a policy expiration date between two dates
         Typically they are 6 months long"""
-    return strTimeProp("3/1/2019", "9/1/2019", '%m/%d/%Y', random.random())
+    return strTimeProp("312019", "912019", '%m%d%Y', random.random())
 
 def policyterm():
     """Return a policy term length"""
