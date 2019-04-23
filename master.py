@@ -5,7 +5,7 @@ import json
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
-iterations = sys.argv[1]
+iterations = int(sys.argv[1], 10)
 state = sys.argv[4]
 vehicles = sys.argv[2]
 drivers = sys.argv[3]
