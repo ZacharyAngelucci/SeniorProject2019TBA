@@ -16,13 +16,13 @@ def randMI(chance=0.8):
     else:
         return " "
 
-def randDOB(minage=55, maxage=120):
+def randDOB(minage=55, maxage=98):
     """Returns a random Date Of Birth in the format of ddmmyyyy
     Args:
         minage (int): Minimum age in years the date of birth can be
             Defaults to 55 (AARP valid age)
         maxage (int): Maximum age in years the date of birth can be
-            Defaults to 120 (oldest living person currently)
+            Defaults to 98 (oldest living person currently)
     """
     curdate = date.today()
     if calendar.isleap(curdate.year) and (curdate.month == 2 and curdate.day == 29):

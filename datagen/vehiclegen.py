@@ -21,7 +21,9 @@ def randownership():
 
 def randusage():
     """Returns a random vehicle use"""
-    usage = ["Pleasure", "Commute", "Farming", "Business"]
+    usage = ["Pleasure", "Farming", "Business"] 
+    # "Commute" leads to branching options
+    
     return random.choice(usage)
 
 
