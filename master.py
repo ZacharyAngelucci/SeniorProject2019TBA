@@ -1,11 +1,15 @@
-import yaml
 import os.path
 import csv
+import sys
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
+iterations = sys.argv[1]
+state = sys.argv[2]
+vehicles = sys.argv[3]
+drivers = sys.argv[4]
 
-def main():
+def main(i, s, v, d):
     config_data = configgen.config()
 
     with open('Output.csv', 'w', newline='') as csvFile:
@@ -39,4 +43,4 @@ def export(out, format):
     return
 
 
-main()
+main(iterations, state, vehicles, drivers)
