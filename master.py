@@ -1,6 +1,7 @@
 import os.path
 import csv
 import sys
+import json
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
@@ -39,8 +40,19 @@ def make_header(v, d):
     return header
 
 
-def export(out, format):
-    return
+def export(out, f):
+    if f == "json":
+        json.dump(out, 'Output.json')
+    else:
+        if os.path.isfile('Output.csv'):
+            with open('Output.csv', 'w', newline='') as csvFile:
+                data_writer = csv.writer(csvFile, dialect='excel')
+                data_writer.writerow(out)
+        else:
+            with open('Output.csv', 'w', newline='') as csvFile:
+                data_writer = csv.writer(csvFile, dialect='excel')
+                data_writer.writerow(make_header(1, 1))
+                data_writer.writerow(out)
 
 
 main(iterations, state, vehicles, drivers)
