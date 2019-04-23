@@ -6,9 +6,10 @@ import json
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
 iterations = sys.argv[1]
-state = sys.argv[2]
-vehicles = sys.argv[3]
-drivers = sys.argv[4]
+state = sys.argv[4]
+vehicles = sys.argv[2]
+drivers = sys.argv[3]
+
 
 def main(i, s, v, d):
     config_data = configgen.config()
@@ -16,7 +17,7 @@ def main(i, s, v, d):
     with open('Output.csv', 'w', newline='') as csvFile:
         data_writer = csv.writer(csvFile, dialect='excel')
         data_writer.writerow(make_header(1, 1))
-        for i in range(config_data['Iterations']):
+        for i in range(i):
             output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
             test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
             list.insert(output, 0, test_id)
