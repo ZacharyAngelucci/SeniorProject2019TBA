@@ -7,18 +7,19 @@ from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
 iterations = int(sys.argv[1], 10)
 state = sys.argv[4]
-vehicles = sys.argv[2]
-drivers = sys.argv[3]
+vehicles = int(sys.argv[2], 10)
+drivers = int(sys.argv[3], 10)
+data_out = sys.argv[5]
 
 
-def main(i, s, v, d):
+def main(r, s, v, d, o):
     config_data = configgen.config()
 
     with open('Output.csv', 'w', newline='') as csvFile:
         data_writer = csv.writer(csvFile, dialect='excel')
         data_writer.writerow(make_header(1, 1))
-        if i != 0:
-            for i in range(i):
+        if r != 0:
+            for i in range(r):
                 output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
                 test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
                 list.insert(output, 0, test_id)
@@ -29,8 +30,6 @@ def main(i, s, v, d):
                 test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
                 list.insert(output, 0, test_id)
                 data_writer.writerow(output)
-
-
 
 
 def make_header(v, d):
@@ -65,4 +64,4 @@ def export(out, f):
                 data_writer.writerow(out)
 
 
-main(iterations, state, vehicles, drivers)
+main(iterations, state, vehicles, drivers, data_out)
