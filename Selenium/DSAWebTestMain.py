@@ -20,10 +20,12 @@ for x in range(1,length):
     try:
         webTest(dataArray, mode, x)
     except Exception as e:
+        os.system("pkill -f firefox")
         if 'Unable to locate element' in str(e):
             file.write("Failed") 
             print(e)
+
             continue
         else:
             print(e)
-file.close() 
+file.close()

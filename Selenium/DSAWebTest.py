@@ -89,7 +89,6 @@ def readCSV():
     return listOfRows
 
 
-
 def webTest(array, modeSelection, n):
     """Executes Website Test with parameters asking for array of data and test mode"""
     print("Opening Headless Web Driver...")
@@ -102,6 +101,7 @@ def webTest(array, modeSelection, n):
     driver.set_window_size(1920, 1080)
     # splits address into individual fields
     address = array[3][n].split(',')
+    print(address)
     streetAd = address[0]
     state = address[2]
     zipCode = address[3]
@@ -122,8 +122,9 @@ def webTest(array, modeSelection, n):
     driver.find_element_by_id("aboutMeAddress").send_keys(streetAd)
 
     # VT special button
-    #if (state == " VT"):
-    #    driver.find_element_by_id("vtTerms_div_add_0").click()
+    print (state)
+    if (state == " VT"):
+        driver.find_element_by_id("vtTerms_div_add_0").click()
 
     # About You - Click Next
     driver.find_element_by_id("about-you-next-button").click()
@@ -131,7 +132,10 @@ def webTest(array, modeSelection, n):
     
     # popup confirmation
     # This dismisses a pop up window appears with saved profiles.
-    driver.find_element_by_id("modal_btn_icon").click()
+    try:
+        driver.find_element_by_id("modal_btn_icon").click()
+    except Exception as e:
+        print(e)
 
     print("About You Finished...")
     # DRIVER PAGE
@@ -152,6 +156,7 @@ def webTest(array, modeSelection, n):
 
     # Press Add Vehicle
     driver.find_element_by_class_name("primary-cta").click()
+    time.sleep(1)
 
     # Confirm added driver
     driver.find_element_by_id("vehicles-next-button").click()
@@ -172,6 +177,12 @@ def webTest(array, modeSelection, n):
         driver.find_element_by_xpath("//*[@id='vehicleRegistered_1_div_1_0']").click()
     else:
         driver.find_element_by_xpath("//*[@id='vehicleRegistered_1_div_1_1']").click()
+
+    # MA specific questions
+    print (state)
+    if (state == " MA"):
+        driver.find_element_by_id("riskStateVehilceRegisteredInd_div_maRiskStateVehilceRegisteredInd_0").click()
+        driver.find_element_by_id("garagingAddress_1_div_1_0").click()
 
     # Vehicle Usage Drop Down
     dropDown = driver.find_element_by_xpath("//a[@id='vehicleUsage_1' and contains(.,'"+array[7][n]+"')]")
