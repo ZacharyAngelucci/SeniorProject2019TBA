@@ -101,12 +101,10 @@ def webTest(array, modeSelection, n):
     driver.set_window_size(1920, 1080)
     # splits address into individual fields
     address = array[3][n].split(',')
-    print(address)
     streetAd = address[0]
     state = address[2]
     zipCode = address[3]
     driver.get("https://qa-quote.thehartford.com/sales/landing-page?zip="+zipCode+"&PLCode=002121&organic=true&affinity=AARP&lob=Auto")
-    print("Launching DSA App...")
     time.sleep(5)
     # ABOUT YOU PAGE
     # DOB
@@ -122,7 +120,6 @@ def webTest(array, modeSelection, n):
     driver.find_element_by_id("aboutMeAddress").send_keys(streetAd)
 
     # VT special button
-    print (state)
     if (state == " VT"):
         driver.find_element_by_id("vtTerms_div_add_0").click()
 
@@ -137,7 +134,6 @@ def webTest(array, modeSelection, n):
     except Exception as e:
         print(e)
 
-    print("About You Finished...")
     # DRIVER PAGE
     # Add a Driver Button
     buttonclick = driver.find_element_by_class_name('add-vehicle-label')
@@ -160,7 +156,6 @@ def webTest(array, modeSelection, n):
 
     # Confirm added driver
     driver.find_element_by_id("vehicles-next-button").click()
-    print("Added Driver...")
     # Second Confirmation Pop up
     search_field = driver.find_element_by_class_name("primary-cta").click()
 
@@ -179,7 +174,6 @@ def webTest(array, modeSelection, n):
         driver.find_element_by_xpath("//*[@id='vehicleRegistered_1_div_1_1']").click()
 
     # MA specific questions
-    print (state)
     if (state == " MA"):
         driver.find_element_by_id("riskStateVehilceRegisteredInd_div_maRiskStateVehilceRegisteredInd_0").click()
         driver.find_element_by_id("garagingAddress_1_div_1_0").click()
@@ -194,7 +188,7 @@ def webTest(array, modeSelection, n):
 
     # Press Select your Drivers
     driver.find_element_by_id("vehicles-next-button").click()
-    time.sleep(7)
+    time.sleep(9)
 
     # Press Add Driver Details
     driver.find_element_by_id("drivers-next-button").click()
@@ -206,7 +200,6 @@ def webTest(array, modeSelection, n):
     # Press Continue Button on Confirm your Drivers
     driver.find_element_by_xpath("//*[@class='btn btn-primary']").click()
     time.sleep(8)
-    print("Vehicles Page Finished...")
     # Your Drivers
     # Select Male or Female
     if array[8][n] == "Male":
@@ -262,7 +255,6 @@ def webTest(array, modeSelection, n):
     # Press Save Driver Button
     driver.find_element_by_id("saveButton_0").click()
     time.sleep(14)# wait for loading screen to go away
-    print("Driver Saved...")
     # Are you an AARP member
     driver.find_element_by_id("aarpMembership_div_aarp_1").click()
 
@@ -270,7 +262,7 @@ def webTest(array, modeSelection, n):
     driver.find_element_by_id("drivers-next-button").click()
 
     # Not adding your spouse/domestic partner
-    if array[9][n] == "Married":
+    if array[9][n] == "Married" or "Domestic Partner":
         dropDown = driver.find_element_by_xpath("//a[@id='spouse' and contains(.,'Permanently living outside the household for more than 1 year')]")
         driver.execute_script("arguments[0].click();",dropDown)
         driver.find_element_by_xpath("//*[@class='btn btn-primary']").click()
