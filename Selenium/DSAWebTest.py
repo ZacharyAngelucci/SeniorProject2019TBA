@@ -91,12 +91,10 @@ def readCSV():
 
 def webTest(array, modeSelection, n):
     """Executes Website Test with parameters asking for array of data and test mode"""
-    print("Opening Headless Web Driver...")
     options = Options()
     options.headless = modeSelection
     driver = webdriver.Firefox(options=options)
     driver.implicitly_wait(40)
-    print ("Headless Firefox Initialized")
     # Navigate to the application home page
     driver.set_window_size(1920, 1080)
     # splits address into individual fields
@@ -105,7 +103,7 @@ def webTest(array, modeSelection, n):
     state = address[2]
     zipCode = address[3]
     driver.get("https://qa-quote.thehartford.com/sales/landing-page?zip="+zipCode+"&PLCode=002121&organic=true&affinity=AARP&lob=Auto")
-    time.sleep(5)
+    time.sleep(3)
     # ABOUT YOU PAGE
     # DOB
     driver.find_element_by_id("dateOfBirth").send_keys(array[2][n])
@@ -132,7 +130,7 @@ def webTest(array, modeSelection, n):
     try:
         driver.find_element_by_id("modal_btn_icon").click()
     except Exception as e:
-        print(e)
+        pass
 
     # DRIVER PAGE
     # Add a Driver Button
@@ -152,12 +150,13 @@ def webTest(array, modeSelection, n):
 
     # Press Add Vehicle
     driver.find_element_by_class_name("primary-cta").click()
-    time.sleep(1)
+    time.sleep(14)
 
     # Confirm added driver
     driver.find_element_by_id("vehicles-next-button").click()
+
     # Second Confirmation Pop up
-    search_field = driver.find_element_by_class_name("primary-cta").click()
+    driver.find_element_by_class_name("primary-cta").click()
 
     # Select Paid for
     if array[5][n] == "Paid For":
@@ -188,7 +187,7 @@ def webTest(array, modeSelection, n):
 
     # Press Select your Drivers
     driver.find_element_by_id("vehicles-next-button").click()
-    time.sleep(9)
+    time.sleep(5)
 
     # Press Add Driver Details
     driver.find_element_by_id("drivers-next-button").click()
@@ -199,7 +198,7 @@ def webTest(array, modeSelection, n):
 
     # Press Continue Button on Confirm your Drivers
     driver.find_element_by_xpath("//*[@class='btn btn-primary']").click()
-    time.sleep(8)
+    time.sleep(5)
     # Your Drivers
     # Select Male or Female
     if array[8][n] == "Male":
@@ -228,7 +227,6 @@ def webTest(array, modeSelection, n):
     # Have you been licensed for at least 3 years?
     dropDown = driver.find_element_by_xpath("//a[@id='licensedDuration' and contains(.,'Less than 1 year')]")
     driver.execute_script("arguments[0].click();",dropDown)
-    time.sleep(5)
 
     # During the past 5 years, have you had an accident (regardless of fault), violation or claim?
     if array[13][n] == "Yes":
@@ -254,18 +252,21 @@ def webTest(array, modeSelection, n):
 
     # Press Save Driver Button
     driver.find_element_by_id("saveButton_0").click()
-    time.sleep(14)# wait for loading screen to go away
+    time.sleep(10)# wait for loading screen to go away
     # Are you an AARP member
     driver.find_element_by_id("aarpMembership_div_aarp_1").click()
 
     # Next button
     driver.find_element_by_id("drivers-next-button").click()
+    time.sleep(3)
 
     # Not adding your spouse/domestic partner
-    if array[9][n] == "Married" or "Domestic Partner":
+    if array[9][n] == "Married" or array[9][n] == "Domestic Partner":
         dropDown = driver.find_element_by_xpath("//a[@id='spouse' and contains(.,'Permanently living outside the household for more than 1 year')]")
         driver.execute_script("arguments[0].click();",dropDown)
         driver.find_element_by_xpath("//*[@class='btn btn-primary']").click()
+    else:
+        pass
 
     # Are you currently insured?
     dropDown = driver.find_element_by_xpath("//a[@id='currentInsurance' and contains(.,'"+array[16][n]+"')]")

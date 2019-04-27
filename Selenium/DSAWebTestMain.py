@@ -2,7 +2,7 @@ import os
 from selenium.common.exceptions import TimeoutException
 from DSAWebTest import start, readCSV, webTest
 
-file = open("testReport.txt", "w") 
+file = open("testReport.txt", "a") 
 # Clears terminal
 os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -17,14 +17,17 @@ length = len(dataArray[0])
 for x in range(1,length):
     
     file.write(str(x))
+    address = dataArray[3][x].split(',')
+    state = address[2]
     try:
         webTest(dataArray, mode, x)
-        file.write(","+str(dataArray[3][x])+",")
+        file.write(","+state+",")
         file.write("Success\n") 
     except Exception as e:
+        print("FAILED")
         os.system("taskkill /IM firefox.exe /F")
-        file.write(","+str(dataArray[3][x])+ ",Failed,")
-        file.write(str(e)+"\n")
+        file.write(","+state+",Failed,")
+        file.write(str(e))
         continue
 
 file.close() 

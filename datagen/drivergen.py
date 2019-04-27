@@ -45,7 +45,7 @@ def strTimeProp(start, end, format, prop):
 def policyexpiration():
     """Return a policy expiration date between two dates
         Typically they are 6 months long"""
-    return strTimeProp("312019", "912019", '%m%d%Y', random.random())
+    return strTimeProp("592019", "11092019", '%m%d%Y', random.random())
 
 def policyterm():
     """Return a policy term length"""
