@@ -1,4 +1,3 @@
-import os.path
 import csv
 import sys
 import json
@@ -14,22 +13,44 @@ data_out = sys.argv[5]
 
 def main(r, s, v, d, o):
     config_data = configgen.config()
+    itera = -1
+    state = None
+    veh = -1
+    drive = -1
 
-    with open('Output.csv', 'w', newline='') as csvFile:
-        data_writer = csv.writer(csvFile, dialect='excel')
-        data_writer.writerow(make_header(1, 1))
-        if r != 0:
-            for i in range(r):
+    if r == 0:
+        itera = config_data['Iterations']
+    else:
+        itera = r
+    if s == None:
+        state = config_data['State']
+    else:
+        state = s
+    if v == 0:
+        veh = config_data['Vehicals']
+    else:
+        veh = v
+    if d == 0:
+        drive = config_data['Drivers']
+    else:
+        drive = d
+
+    if o == "CVS" or config_data['Output'] == "CSV":
+        with open('Output.csv', 'w', newline='') as csvFile:
+            data_writer = csv.writer(csvFile, dialect='excel')
+            data_writer.writerow(make_header(1, 1))
+            for i in range(itera):
                 output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
                 test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
                 list.insert(output, 0, test_id)
                 data_writer.writerow(output)
-        else:
-            for i in range(config_data['Iterations']):
-                output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
-                test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
-                list.insert(output, 0, test_id)
-                data_writer.writerow(output)
+    else:
+        output = None
+        for i in range(itera):
+            output = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
+            test_id = "TC" + "{0:03}".format(i + 1) + "-E2E-WEB-1V1D-" + output[0]
+            list.insert(output, 0, test_id)
+        json.dump(output, 'Output.json')
 
 
 def make_header(v, d):
@@ -47,21 +68,6 @@ def make_header(v, d):
                 temp.append(yourdrivers.HEADER[j] + str(i + 1))
             header.extend(temp)
     return header
-
-
-def export(out, f):
-    if f == "json":
-        json.dump(out, 'Output.json')
-    else:
-        if os.path.isfile('Output.csv'):
-            with open('Output.csv', 'w', newline='') as csvFile:
-                data_writer = csv.writer(csvFile, dialect='excel')
-                data_writer.writerow(out)
-        else:
-            with open('Output.csv', 'w', newline='') as csvFile:
-                data_writer = csv.writer(csvFile, dialect='excel')
-                data_writer.writerow(make_header(1, 1))
-                data_writer.writerow(out)
 
 
 main(iterations, state, vehicles, drivers, data_out)
