@@ -39,7 +39,7 @@ def readCSV():
     lineCount = []
     # Read from CSV file
     # Currently using sample test data from testData.csv
-    with open(os.path.join( os.getcwd(), '..', 'Output.csv' )) as csvfile:
+    with open("Output.csv") as csvfile:
         readCSV = csv.reader(csvfile, delimiter=',')
         for row in readCSV:
             firstName.append(row[2])
@@ -294,9 +294,18 @@ def webTest(array, modeSelection, n):
 
     # Click "Choose Your Coverages"
     driver.find_element_by_id("current-insurance-next-button").click()
-    time.sleep(5)
+    time.sleep(3)
+
+
     # Click next on popup
-    #driver.find_element_by_xpath("btn btn-primary btn-lg btn-block").click()
+    buttonclick = driver.find_element_by_xpath('//*[@tabindex="44"]')
+    print("2")
+    action = webdriver.common.action_chains.ActionChains(driver)
+    action.move_to_element_with_offset(buttonclick, 2, 2)
+    action.click()
+    action.perform()
     print("FINISHED")
+    #Wait For Qoute to Show
+    time.sleep(20)
     driver.close()
 
