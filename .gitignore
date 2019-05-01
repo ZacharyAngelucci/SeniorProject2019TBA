@@ -13,3 +13,5 @@ Output.csv
 .vs/slnx.sqlite
 .vs/VSWorkspaceState.json
 .vscode/launch.json
+tools/OpenAddresses-US-Parser/Input*
+tools/OpenAddresses-US-Parser/Output*

@@ -11,7 +11,13 @@ def config():
 
 
 def create_config():
-    config_default = {'Iterations': 0}
+    config_default = {
+        'Iterations': 0,
+        'State': 'ALL',
+        'Vehicles': 1,
+        'Drivers': 1,
+        'Output': 'CSV'
+    }
     with open('config.yaml', 'w') as f:
         yaml.dump(config_default, f, default_flow_style=False)
 
@@ -19,4 +25,3 @@ def create_config():
 def load_config():
     with open('config.yaml') as f:
         return yaml.safe_load(f)
-
