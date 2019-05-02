@@ -15,8 +15,9 @@ def randaddress(state='all'):
     filename = 'datagen\\sampleaddresses\\'
     buffer_EOF = 100
     file_size = os.stat(filename)[6]
+    state = state.upper()
 
-    if state == 'all':
+    if state == 'ALL':
         state = randstate()
     filename = filename + state + '.csv'
     file = open(filename, 'r')
