@@ -81,7 +81,7 @@ def main():
     else:
         output = None
         for i in range(iterations):
-            row = aboutyou.makeList() + yourvehicles.makeList() + yourdrivers.makeList()
+            row = aboutyou.makeList(validcase) + yourvehicles.makeList() + yourdrivers.makeList()
             test_id = 'TC' + '{0:03}'.format(i + 1) + '-E2E-WEB-1V1D-' + row[0]
             list.insert(row, 0, test_id)
         json.dump(output, 'Output.json')
