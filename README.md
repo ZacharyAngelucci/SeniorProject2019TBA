@@ -44,7 +44,44 @@ Future configurations
     ├── config.yaml
     └── README.md
 
+
 # Tools
+## DSAWebTest
+Python program to test the genrated data from the main program. It uses the CSV output file from master.py and indivdually tests every row in "Output.csv". If an individual test fails due to problems like timeouts, fail data, or incorrect data than the program will terminate the test and move on to testing the next row. The DSAWebTest also creates a report file called "testReport.csv" with the results of the test, a failed test is labeled as failed and lists the error info.
+
+## Prerequisites
+```
+Firefox GeckoDriver
+
+Selenium WebDriver
+```
+## How to Install
+
+### Selenium
+```
+pip install selenium
+```
+### GeckoDriver
+
+Download:
+https://github.com/mozilla/geckodriver/releases
+
+Add the location of "geckdriver.exe" to path by
+```
+Control Panel --> Large Icons --> System Settings --> Advanced Systems Settings --> Enviorment Variables --> Select Path in System Variables --> Edit --> Add the location of "geckodriver"
+```
+## Modes
+
+### Demo Mode:
+ Runs the test visually by showing the testing being done on the browser in real time. 
+
+### Test Mode: 
+Runs the test in Firefox headless mode which hides any visual browsers and indicates each finished or failed test in the console.
+
+## Running the program
+Before you use this program make sure you run "master.py" with the "csv" flag and check that "Output.csv" exists in the project folder. Run "DSAWebTestMain.py" and you will be prompted with an option to choose Test Mode and Demo mode by typing "demo" or "test".
+
+
 ## OpenAddresses-US-Parser
 Python program to format USA state addresses from USA region datasets taken from openaddress.io. Where the dataset from openaddress.io is split up between either state or city files this program combs through the statewide files (if present).  If no useable data is found in the state file, then it will then search through each city file.  The result is a csv file for each of the 50 states with the following header.  
 ```
