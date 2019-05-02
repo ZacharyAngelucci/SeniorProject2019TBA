@@ -58,14 +58,22 @@ def main():
     # set Test case identifier
     test_case_id = '-E2E-WEB-{}V{}D-'.format(vehicles, drivers)
 
+    
+
     # Generate test data depending on file type
     if output == 'CSV':
         with open('Output.csv', 'w', newline='') as csvFile:
             data_writer = csv.writer(csvFile, dialect='excel')
             data_writer.writerow(make_header(1, 1))
             for i in range(iterations):
+                # Determine if test case will be valid or not
+                chance = 0.8
+                if random.random() <= chance:
+                    validcase = true
+                else:
+                    validcase = false
                 row = aboutyou.makeList(
-                    state=state) + yourvehicles.makeList() + yourdrivers.makeList()
+                    validcase, state=state ) + yourvehicles.makeList() + yourdrivers.makeList()
                 test_id = 'TC' + '{0:03}'.format(i + 1) + test_case_id + row[0]
                 list.insert(row, 0, test_id)
                 data_writer.writerow(row)

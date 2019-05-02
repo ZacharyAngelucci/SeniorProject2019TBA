@@ -8,7 +8,7 @@ HEADER = ["State", "FirstName", "MiddleName", "LastName", "Address", "Apartment"
           "DateOfBirth", "Email", "Phone Number"]
 
 
-def makeList(state='all'):
+def makeList(validcase, state='all'):
     """	Returns the randomly generated fields in the "About You" page, according
             to the DSA template
     """
@@ -17,8 +17,24 @@ def makeList(state='all'):
     address_body.append(address[2] + "," + address[3])
     address_body_str = ", ".join(map(str, address_body))
     state = address[2]
-    firstname = state + "CCSUFN"
-    lastname = state + "CCSULN"
     email = "plautomation@thehartford.com"
+    if validcase == true:
+        firstname = state + "CCSUFN"
+        lastname = state + "CCSULN"
+    else:
+        choice = random.randint(1, 4)
+        if choice == 1:
+                firstname = state + "CCSUFN" + random.randint(1,101)
+        if choice == 2:
+                lastname = state + "CCSULN" + random.randint(1,101)
+        if choice == 3:
+                chance = 0.5
+                if random.random() <= chance:
+                        DOB = "07202000" #Younger than 55
+                else:
+                        DOB = "07201800" #Older than 98
+        else:
+                DOB = persongen.randDOB()
+    
     return [state, firstname, persongen.randMI(), lastname, address_body_str,
-            address[4].replace('\n',''), persongen.randDOB(), email, persongen.randphonenum()]
+            address[4].replace('\n',''), DOB, email, persongen.randphonenum()]
