@@ -1,15 +1,35 @@
+"""
+Master file to run the test data generation program.
+Can be run from either the command line or running the actual file itself.
+Arguments:
+    If an argument is not specified on the command line then the value is 
+    derived from the config file.  All arguments are optional and can be 
+    requested in any order.
+        -i #iterations 
+        -s 'ab'(two letter state) 
+        -v #vehicles
+        -d #drivers
+        -o 'output type'(CSV or JSON)
+Usage 
+    master.py -i # -s 'ab' -v # -d # -o 'CSV or JSON'
+Example
+    $python master.py -i 100 -s CT -v 1 -d 1 -o CSV
+Output
+    Output will be in the root folder, filename will be Output with the
+    chosen filetype so either Output.csv or Output.json
+"""
+
 import csv
 import sys
 import json
 import argparse
-import random 
+import random
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
 parser = argparse.ArgumentParser()
 
-# Usage master.py -i #iterations -s 'ab'(two letter state) -v #vehicles
-#                 -d #drivers -o 'output type'(CSV or JSON)
+
 def main():
     parser.add_argument('-i', action='store', dest='arg_iterations',
                         help='[int] Number of cases to generate')
@@ -31,10 +51,9 @@ def main():
     drivers = results.arg_drivers
     output = results.arg_output_type
 
-    config_data = configgen.config()
-
     # fill in empty args with config settings
     # parse non-None answers to preferred data type
+    config_data = configgen.config()
     if iterations == None:
         iterations = config_data['Iterations']
     else:
@@ -59,8 +78,6 @@ def main():
     # set Test case identifier
     test_case_id = '-E2E-WEB-{}V{}D-'.format(vehicles, drivers)
 
-    
-
     # Generate test data depending on file type
     if output == 'CSV':
         with open('Output.csv', 'w', newline='') as csvFile:
@@ -74,14 +91,15 @@ def main():
                 else:
                     validcase = False
                 row = aboutyou.makeList(
-                    validcase, state=state ) + yourvehicles.makeList() + yourdrivers.makeList()
+                    validcase, state=state) + yourvehicles.makeList() + yourdrivers.makeList()
                 test_id = 'TC' + '{0:03}'.format(i + 1) + test_case_id + row[0]
                 list.insert(row, 0, test_id)
                 data_writer.writerow(row)
     else:
         output = None
         for i in range(iterations):
-            row = aboutyou.makeList(validcase) + yourvehicles.makeList() + yourdrivers.makeList()
+            row = aboutyou.makeList(
+                validcase) + yourvehicles.makeList() + yourdrivers.makeList()
             test_id = 'TC' + '{0:03}'.format(i + 1) + '-E2E-WEB-1V1D-' + row[0]
             list.insert(row, 0, test_id)
         json.dump(output, 'Output.json')
@@ -103,6 +121,4 @@ def make_header(v, d):
             header.extend(temp)
     return header
 
-
-#main(iterations, state, vehicles, drivers, data_out)
 main()
