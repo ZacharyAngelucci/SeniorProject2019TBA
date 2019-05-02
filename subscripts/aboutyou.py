@@ -18,23 +18,21 @@ def makeList(validcase, state='all'):
     address_body_str = ", ".join(map(str, address_body))
     state = address[2]
     email = "plautomation@thehartford.com"
-    if validcase == true:
-        firstname = state + "CCSUFN"
-        lastname = state + "CCSULN"
-    else:
+    DOB = persongen.randDOB()
+    firstname = state + "CCSUFN"
+    lastname = state + "CCSULN"
+    if validcase == False:
         choice = random.randint(1, 4)
         if choice == 1:
-                firstname = state + "CCSUFN" + random.randint(1,101)
+                firstname = state + "CCSUFN" + str(random.randint(1,101))
         if choice == 2:
-                lastname = state + "CCSULN" + random.randint(1,101)
+                lastname = state + "CCSULN" + str(random.randint(1,101))
         if choice == 3:
                 chance = 0.5
                 if random.random() <= chance:
                         DOB = "07202000" #Younger than 55
                 else:
                         DOB = "07201800" #Older than 98
-        else:
-                DOB = persongen.randDOB()
     
     return [state, firstname, persongen.randMI(), lastname, address_body_str,
             address[4].replace('\n',''), DOB, email, persongen.randphonenum()]

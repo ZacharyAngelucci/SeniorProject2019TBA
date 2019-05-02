@@ -2,6 +2,7 @@ import csv
 import sys
 import json
 import argparse
+import random 
 
 from subscripts import aboutyou, yourdrivers, yourvehicles, configgen
 
@@ -69,9 +70,9 @@ def main():
                 # Determine if test case will be valid or not
                 chance = 0.8
                 if random.random() <= chance:
-                    validcase = true
+                    validcase = True
                 else:
-                    validcase = false
+                    validcase = False
                 row = aboutyou.makeList(
                     validcase, state=state ) + yourvehicles.makeList() + yourdrivers.makeList()
                 test_id = 'TC' + '{0:03}'.format(i + 1) + test_case_id + row[0]
